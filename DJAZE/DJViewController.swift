@@ -32,6 +32,20 @@ class DJViewController: UIViewController {
         search(searchTerm)
     }
     
+    //adds songname and artist to db
+    //var ref: DatabaseReference!
+    //ref = Database.database().reference()
+
+    //@IBAction func playSong()
+    //{
+    //    let song="song"
+    //    var songNum=song+String(counter)
+    //    counter+=1
+        
+    //    self.ref.child("Songs/\(songNum)/Artist").setValue(artist)
+    //    self.ref.child("Songs/\(songNum)/SongName").setValue(songName)
+    //}
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

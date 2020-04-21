@@ -10,6 +10,7 @@ import UIKit
 
 // Import SpotifyKit iOS library
 import SpotifyKit
+import Firebase
 
 // MARK: SpotifyKit initialization
 
@@ -46,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         return true
     }
 
