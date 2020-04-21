@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		303F63154D71CE4B5C3EC3BA /* Pods_DJAZE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F651BBE8877E05C6B8B9DB9 /* Pods_DJAZE.framework */; };
+		C23AA83A244F35F30006B1A2 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AA839244F35F30006B1A2 /* UIImageView+Download.swift */; };
 		C275E635244F349600CB4AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C275E634244F349600CB4AB4 /* AppDelegate.swift */; };
 		C275E637244F349600CB4AB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C275E636244F349600CB4AB4 /* SceneDelegate.swift */; };
 		C275E639244F349600CB4AB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C275E638244F349600CB4AB4 /* ViewController.swift */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B8B8486DF94C83982A4270E /* Pods-DJAZE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJAZE.debug.xcconfig"; path = "Target Support Files/Pods-DJAZE/Pods-DJAZE.debug.xcconfig"; sourceTree = "<group>"; };
+		5BBDCAA1D54B1C14EF2A5602 /* Pods-DJAZE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJAZE.release.xcconfig"; path = "Target Support Files/Pods-DJAZE/Pods-DJAZE.release.xcconfig"; sourceTree = "<group>"; };
+		7F651BBE8877E05C6B8B9DB9 /* Pods_DJAZE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJAZE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C23AA839244F35F30006B1A2 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 		C275E631244F349600CB4AB4 /* DJAZE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJAZE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C275E634244F349600CB4AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C275E636244F349600CB4AB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				303F63154D71CE4B5C3EC3BA /* Pods_DJAZE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		900FCFD7DCA7C47F5CEE32A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F651BBE8877E05C6B8B9DB9 /* Pods_DJAZE.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE1BFD5B4AE88E6B909ABD80 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B8B8486DF94C83982A4270E /* Pods-DJAZE.debug.xcconfig */,
+				5BBDCAA1D54B1C14EF2A5602 /* Pods-DJAZE.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C275E628244F349600CB4AB4 = {
 			isa = PBXGroup;
 			children = (
 				C275E633244F349600CB4AB4 /* DJAZE */,
 				C275E632244F349600CB4AB4 /* Products */,
+				BE1BFD5B4AE88E6B909ABD80 /* Pods */,
+				900FCFD7DCA7C47F5CEE32A7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +85,7 @@
 				C275E634244F349600CB4AB4 /* AppDelegate.swift */,
 				C275E636244F349600CB4AB4 /* SceneDelegate.swift */,
 				C275E638244F349600CB4AB4 /* ViewController.swift */,
+				C23AA839244F35F30006B1A2 /* UIImageView+Download.swift */,
 				C275E63A244F349600CB4AB4 /* Main.storyboard */,
 				C275E63D244F349700CB4AB4 /* Assets.xcassets */,
 				C275E63F244F349700CB4AB4 /* LaunchScreen.storyboard */,
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C275E645244F349700CB4AB4 /* Build configuration list for PBXNativeTarget "DJAZE" */;
 			buildPhases = (
+				F9C0BEF2C78B355D133955AD /* [CP] Check Pods Manifest.lock */,
 				C275E62D244F349600CB4AB4 /* Sources */,
 				C275E62E244F349600CB4AB4 /* Frameworks */,
 				C275E62F244F349600CB4AB4 /* Resources */,
+				B63DA38C3044125EF14FF21C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,11 +162,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B63DA38C3044125EF14FF21C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DJAZE/Pods-DJAZE-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DJAZE/Pods-DJAZE-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DJAZE/Pods-DJAZE-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9C0BEF2C78B355D133955AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DJAZE-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C275E62D244F349600CB4AB4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23AA83A244F35F30006B1A2 /* UIImageView+Download.swift in Sources */,
 				C275E639244F349600CB4AB4 /* ViewController.swift in Sources */,
 				C275E635244F349600CB4AB4 /* AppDelegate.swift in Sources */,
 				C275E637244F349600CB4AB4 /* SceneDelegate.swift in Sources */,
@@ -282,6 +354,7 @@
 		};
 		C275E646244F349700CB4AB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B8B8486DF94C83982A4270E /* Pods-DJAZE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +373,7 @@
 		};
 		C275E647244F349700CB4AB4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BBDCAA1D54B1C14EF2A5602 /* Pods-DJAZE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
