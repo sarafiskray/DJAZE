@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="FQg-Is-pLr"/>
+                        <segue destination="dZw-UI-eHW" kind="relationship" relationship="rootViewController" id="zUO-yN-w0T"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRg-ZK-2ZC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -24,9 +24,48 @@
             <point key="canvasLocation" x="-612" y="102"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="Iw5-Pz-lyA">
+            <objects>
+                <viewController id="dZw-UI-eHW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2GH-yO-dOS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhk-L1-yxo">
+                                <rect key="frame" x="192" y="182" width="124" height="154"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="DJ"/>
+                                <connections>
+                                    <action selector="DJSegueButton:" destination="za3-Hs-xJG" eventType="touchUpInside" id="DfX-QW-GL8"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="DJSegue" id="a2x-85-HDY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btW-hZ-ZbU">
+                                <rect key="frame" x="191" y="514" width="115" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <state key="normal" title="User"/>
+                                <connections>
+                                    <action selector="userSegueButton:" destination="za3-Hs-xJG" eventType="touchUpInside" id="GnH-hC-446"/>
+                                    <segue destination="zBW-Rk-oFZ" kind="show" identifier="userSegue" id="msa-vi-pkI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="OI4-zV-OUQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0Ls-nZ-6ol"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iaf-T9-ibf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="za3-Hs-xJG" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="189.85507246376812" y="147.99107142857142"/>
+        </scene>
+        <!--DJ View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DJAZE" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="DJ View Controller" id="BYZ-38-t0r" customClass="DJViewController" customModule="DJAZE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +102,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="101.78571428571428"/>
+            <point key="canvasLocation" x="1064" y="-121"/>
+        </scene>
+        <!--User View Controller-->
+        <scene sceneID="0AZ-WS-HjA">
+            <objects>
+                <viewController id="zBW-Rk-oFZ" customClass="UserViewController" customModule="DJAZE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Oga-qU-L5b">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hpL-Wa-mUl"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7JE-S4-Ttt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EX8-uv-tEx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1094" y="591"/>
         </scene>
     </scenes>
 </document>

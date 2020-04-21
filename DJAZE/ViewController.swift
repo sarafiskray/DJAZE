@@ -11,9 +11,6 @@ import SpotifyKit
 
 class ViewController: UIViewController {
 
-    // MARK: Outlets
-    
-    @IBOutlet var searchTermField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,35 +24,13 @@ class ViewController: UIViewController {
         //loadUser()
     }
     
-    
-    @IBAction func searchButton(_ sender: Any) {
-        //get text from search box
-        var searchTerm = searchTermField.text!
-        //pass to spotifyManager
-        spotifyManager.find(SpotifyTrack.self, searchTerm) { tracks in
-            // Tracks is a [SpotifyTrack] array
-            for track in tracks {
-                print("URI:    \(track.uri), "         +
-                      "Name:   \(track.name), "        +
-                      "Artist: \(track.artist.name), ")
-            }
-        }
+    @IBAction func DJSegueButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "DJSegue", sender: self)
     }
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func search(_ searchTerm: String) {
-        spotifyManager.find(SpotifyTrack.self, searchTerm) { tracks in
-        // Tracks is a [SpotifyTrack] array
-        for track in tracks {
-            print("URI:    \(track.uri), "         +
-                  "Name:   \(track.name), "        +
-                  "Artist: \(track.artist.name) " )
-            }
-        }
+    @IBAction func userSegueButton(_ sender: Any) {
+        performSegue(withIdentifier: "userSegue", sender: self)
     }
     
     
