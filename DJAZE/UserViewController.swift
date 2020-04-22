@@ -14,6 +14,9 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     var songs = ["Peta", "Gorgeous", "Many Men"]
     var artists = ["Roddy Ricch", "Kanye West", "50Cent"]
     
+    @IBOutlet weak var nowPlayingSongLabel: UILabel!
+    @IBOutlet weak var nowPlayingArtistLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -32,5 +35,11 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
+    
+    @IBAction func nowPlayingDislikeButton(_ sender: Any) {
+    }
+    @IBAction func nowPlayingLikeButton(_ sender: Any) {
+    }
+    
     
 }
