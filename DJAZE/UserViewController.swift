@@ -15,11 +15,16 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     lazy var sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
     
+    var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
+    
     @IBOutlet weak var nowPlayingSongLabel: UILabel!
     @IBOutlet weak var nowPlayingArtistLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nowPlayingSongLabel.text = currentSong.title
+        nowPlayingArtistLabel.text = currentSong.artist
         
     }
     
@@ -40,11 +45,14 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func nowPlayingDislikeButton(_ sender: Any) {
+        currentSong.voteDown()
     }
     @IBAction func nowPlayingLikeButton(_ sender: Any) {
+        currentSong.voteUp()
     }
     @IBAction func addButton(_ sender: Any) {
 //        spotifyManager.isSaved(trackId: "Peta" { isSaved; in spotifyManager.save(trackId: "Peta", completionHandler: <#T##(Bool) -> Void#>)}
+        print(currentSong.aggVote)
 
     }
     

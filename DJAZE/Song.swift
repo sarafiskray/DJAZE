@@ -23,5 +23,13 @@ class Song: Codable {
         self.downVoteCount = downVoteCount
         self.aggVote = upVoteCount - downVoteCount
     }
+    
+    func voteUp() {
+        self.aggVote += 1
+    }
+    
+    func voteDown() {
+        self.aggVote -= 1
+    }
 
 }
