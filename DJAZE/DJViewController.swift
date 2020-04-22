@@ -5,11 +5,13 @@
 
 import UIKit
 import SpotifyKit
+import Firebase
 
 class DJViewController: UIViewController {
-
+    var ref: DatabaseReference!
     // MARK: Outlets
-    
+    var songCounter=0
+    var song="song"
     @IBOutlet var searchTermField: UITextField!
     
     @IBOutlet var firstResultButton: UIButton!
@@ -18,6 +20,7 @@ class DJViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
     }
     
@@ -53,6 +56,30 @@ class DJViewController: UIViewController {
         var uri: String
         var name: String
         var artist: String
+    }
+    
+    
+    @IBAction func selectFirstResult(_ sender: Any)
+    {
+        
+    }
+    @IBAction func selectSecondResult(_ sender: Any)
+    {
+        
+    }
+    
+    @IBAction func selectThirdResult(_ sender: Any)
+    {
+    }
+    
+    func sendToDb(_ buttonInfo: songInfo)
+    {
+        ref = Database.database().reference()
+        var songNum=song+String(songCounter) //song0 song1 song2 song3
+        songCounter+=1
+        
+        self.ref.child("Songs/\(songNum)/Artist").setValue(buttonInfo.artist)
+        self.ref.child("Songs/\(songNum)/SongName").setValue(buttonInfo.name)
     }
     
     func updateButtons(_ buttonInfo: [songInfo]) {

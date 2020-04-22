@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>832211977146-scha7ptjqqn7mvelru8gb5lah9cm4laj.apps.googleusercontent.com</string>
+	<string>832211977146-i242qmtut4dlaq0h31lavfmgndfmpfpc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.832211977146-scha7ptjqqn7mvelru8gb5lah9cm4laj</string>
+	<string>com.googleusercontent.apps.832211977146-i242qmtut4dlaq0h31lavfmgndfmpfpc</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBcCO_k8Y_xUDrzNedIKOib0cQbg3e153o</string>
 	<key>GCM_SENDER_ID</key>
@@ -19,17 +19,17 @@
 	<key>STORAGE_BUCKET</key>
 	<string>djaze-8d180.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:832211977146:ios:13ea9102031c9ccd4b1383</string>
+	<string>1:832211977146:ios:6aee729ea400220a4b1383</string>
 	<key>DATABASE_URL</key>
 	<string>https://djaze-8d180.firebaseio.com</string>
 </dict>

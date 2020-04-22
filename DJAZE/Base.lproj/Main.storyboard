@@ -95,16 +95,25 @@
                                 <rect key="frame" x="76" y="277" width="262" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Results"/>
+                                <connections>
+                                    <action selector="selectFirstResult:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oE7-Oz-Pgc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eJk-ao-sK7">
                                 <rect key="frame" x="83" y="413" width="248" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Appear"/>
+                                <connections>
+                                    <action selector="selectSecondResult:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CyH-Tg-V1e"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrT-4a-Ifp">
                                 <rect key="frame" x="91" y="561" width="233" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Here"/>
+                                <connections>
+                                    <action selector="selectThirdResult:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xqy-DG-H81"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
