@@ -47,7 +47,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <state key="normal" title="User"/>
                                 <connections>
-                                    <action selector="userSegueButton:" destination="za3-Hs-xJG" eventType="touchUpInside" id="GnH-hC-446"/>
+                                    <action selector="userSegueButton:" destination="za3-Hs-xJG" eventType="touchUpInside" id="mGJ-CS-Ld1"/>
                                     <segue destination="zBW-Rk-oFZ" kind="show" identifier="userSegue" id="msa-vi-pkI"/>
                                 </connections>
                             </button>
@@ -225,21 +225,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Now Playing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMo-Ck-gFx" userLabel="Now Playing Label">
-                                <rect key="frame" x="20" y="88" width="374" height="36"/>
+                                <rect key="frame" x="20" y="195" width="374" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaR-IU-cpI">
-                                <rect key="frame" x="20" y="170" width="374" height="21"/>
+                                <rect key="frame" x="20" y="277" width="374" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVQ-ff-tL0" userLabel="Dislike Button">
-                                <rect key="frame" x="20" y="219" width="45" height="30"/>
+                                <rect key="frame" x="20" y="326" width="45" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Dislike"/>
                                 <connections>
@@ -247,14 +247,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyW-kq-IO9">
-                                <rect key="frame" x="20" y="132" width="374" height="30"/>
+                                <rect key="frame" x="20" y="239" width="374" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-HY-iI4" userLabel="Add Button">
-                                <rect key="frame" x="192" y="219" width="30" height="30"/>
+                                <rect key="frame" x="192" y="326" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
@@ -262,11 +262,25 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQZ-LB-KeX" userLabel="Like Button">
-                                <rect key="frame" x="364" y="219" width="30" height="30"/>
+                                <rect key="frame" x="364" y="326" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Like"/>
                                 <connections>
                                     <action selector="nowPlayingLikeButton:" destination="zBW-Rk-oFZ" eventType="touchUpInside" id="NGz-PK-dAT"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J1u-dh-1Te" userLabel="Search Term Text Field">
+                                <rect key="frame" x="20" y="99" width="330" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcR-mC-uUs" userLabel="Search Button">
+                                <rect key="frame" x="357" y="101" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchButton:" destination="zBW-Rk-oFZ" eventType="touchUpInside" id="PDa-f6-fUP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -277,6 +291,7 @@
                     <connections>
                         <outlet property="nowPlayingArtistLabel" destination="TaR-IU-cpI" id="EuD-5X-hWg"/>
                         <outlet property="nowPlayingSongLabel" destination="nyW-kq-IO9" id="fTL-ZP-wxu"/>
+                        <outlet property="searchTermTextField" destination="J1u-dh-1Te" id="OlS-S0-HsZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EX8-uv-tEx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

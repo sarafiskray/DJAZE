@@ -29,7 +29,6 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "DJSegue", sender: self)
     }
     
-    
     @IBAction func userSegueButton(_ sender: Any) {
         performSegue(withIdentifier: "userSegue", sender: self)
     }

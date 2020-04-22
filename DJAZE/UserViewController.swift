@@ -17,8 +17,19 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
     
+
+    var searchInfo: [songInfo] = []
+    
+    var songCounter=0
+    var song="song"
+    
+    
+    
+    @IBOutlet weak var searchTermTextField: UITextField!
     @IBOutlet weak var nowPlayingSongLabel: UILabel!
     @IBOutlet weak var nowPlayingArtistLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +55,17 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         return 75
     }
     
+    struct songInfo : Hashable {
+        var uri: String
+        var name: String
+        var artist: String
+    }
+    
+    @IBAction func searchButton(_ sender: Any) {
+        let searchTerm = searchTermTextField.text!
+        
+        search(searchTerm)
+    }
     @IBAction func nowPlayingDislikeButton(_ sender: Any) {
         currentSong.voteDown()
     }
@@ -54,6 +76,25 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
 //        spotifyManager.isSaved(trackId: "Peta" { isSaved; in spotifyManager.save(trackId: "Peta", completionHandler: <#T##(Bool) -> Void#>)}
         print(currentSong.aggVote)
 
+    }
+    
+    func search(_ searchTerm: String) {
+        //var searchInfo: [songInfo] = []
+        searchInfo = []
+        let numSongstoReturn = 3
+        var count = 0
+        spotifyManager.find(SpotifyTrack.self, searchTerm) {
+            tracks in
+                for track in tracks {
+                    var searchResult = songInfo(uri: track.uri, name: track.name, artist: track.artist.name)
+                    self.searchInfo.append(searchResult)
+                    count += 1
+//                    self.songs.append(Song(title: track.name, artist: track.artist.name, upVoteCount: 0, downVoteCount: 0))
+                 
+            }
+            
+            
+        }
     }
     
     
