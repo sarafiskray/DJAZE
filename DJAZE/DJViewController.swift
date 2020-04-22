@@ -97,6 +97,7 @@ class DJViewController: UIViewController {
     
     func search(_ searchTerm: String) {
         //var searchInfo: [songInfo] = []
+        searchInfo = []
         let numSongstoReturn = 3
         var count = 0
         spotifyManager.find(SpotifyTrack.self, searchTerm) {
@@ -108,6 +109,7 @@ class DJViewController: UIViewController {
                     if (count == numSongstoReturn) {
                         //print(searchInfo[0].name)
                         self.updateButtons(self.searchInfo)
+                        
                         break
                     }
                 }
