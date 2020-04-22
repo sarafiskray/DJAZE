@@ -8,10 +8,14 @@ import SpotifyKit
 import Firebase
 
 class DJViewController: UIViewController {
+    //global
     var ref: DatabaseReference!
-    // MARK: Outlets
+    var searchInfo: [songInfo] = []
+    
     var songCounter=0
     var song="song"
+    
+    // MARK: Outlets
     @IBOutlet var searchTermField: UITextField!
     
     @IBOutlet var firstResultButton: UIButton!
@@ -61,25 +65,28 @@ class DJViewController: UIViewController {
     
     @IBAction func selectFirstResult(_ sender: Any)
     {
-        
+        sendToDb(searchInfo[0].name, searchInfo[0].artist)
     }
     @IBAction func selectSecondResult(_ sender: Any)
     {
-        
+        sendToDb(searchInfo[1].name, searchInfo[1].artist)
+
     }
     
     @IBAction func selectThirdResult(_ sender: Any)
     {
+        sendToDb(searchInfo[2].name, searchInfo[2].artist)
+
     }
     
-    func sendToDb(_ buttonInfo: songInfo)
+    func sendToDb(_ name: String, _ artist: String)
     {
         ref = Database.database().reference()
         var songNum=song+String(songCounter) //song0 song1 song2 song3
         songCounter+=1
         
-        self.ref.child("Songs/\(songNum)/Artist").setValue(buttonInfo.artist)
-        self.ref.child("Songs/\(songNum)/SongName").setValue(buttonInfo.name)
+        self.ref.child("Songs/\(songNum)/Artist").setValue(artist)
+        self.ref.child("Songs/\(songNum)/SongName").setValue(name)
     }
     
     func updateButtons(_ buttonInfo: [songInfo]) {
@@ -89,18 +96,18 @@ class DJViewController: UIViewController {
     }
     
     func search(_ searchTerm: String) {
-        var searchInfo: [songInfo] = []
+        //var searchInfo: [songInfo] = []
         let numSongstoReturn = 3
         var count = 0
         spotifyManager.find(SpotifyTrack.self, searchTerm) {
             tracks in
                 for track in tracks {
                     var searchResult = songInfo(uri: track.uri, name: track.name, artist: track.artist.name)
-                    searchInfo.append(searchResult)
+                    self.searchInfo.append(searchResult)
                     count += 1
                     if (count == numSongstoReturn) {
                         //print(searchInfo[0].name)
-                        self.updateButtons(searchInfo)
+                        self.updateButtons(self.searchInfo)
                         break
                     }
                 }
