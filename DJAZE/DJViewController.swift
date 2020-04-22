@@ -12,6 +12,10 @@ class DJViewController: UIViewController {
     
     @IBOutlet var searchTermField: UITextField!
     
+    @IBOutlet var firstResultButton: UIButton!
+    @IBOutlet var secondResultButton: UIButton!
+    @IBOutlet var thirdResultButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +55,11 @@ class DJViewController: UIViewController {
         var artist: String
     }
     
+    func updateButtons(_ buttonInfo: [songInfo]) {
+        firstResultButton.setTitle(buttonInfo[0].name + buttonInfo[0].artist, for: [])
+        secondResultButton.setTitle(buttonInfo[1].name + buttonInfo[1].artist, for: [])
+        thirdResultButton.setTitle(buttonInfo[2].name + buttonInfo[2].artist, for: [])
+    }
     
     func search(_ searchTerm: String) {
         var searchInfo: [songInfo] = []
@@ -59,14 +68,12 @@ class DJViewController: UIViewController {
         spotifyManager.find(SpotifyTrack.self, searchTerm) {
             tracks in
                 for track in tracks {
-                //print("URI:    \(track.uri), "         +
-                //    "Name:   \(track.name), "        +
-                //    "Artist: \(track.artist.name) " )
                     var searchResult = songInfo(uri: track.uri, name: track.name, artist: track.artist.name)
                     searchInfo.append(searchResult)
                     count += 1
                     if (count == numSongstoReturn) {
-                        //print(searchInfo)
+                        //print(searchInfo[0].name)
+                        self.updateButtons(searchInfo)
                         break
                     }
                 }
