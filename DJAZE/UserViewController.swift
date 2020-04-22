@@ -43,6 +43,10 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     @IBAction func nowPlayingLikeButton(_ sender: Any) {
     }
+    @IBAction func addButton(_ sender: Any) {
+//        spotifyManager.isSaved(trackId: "Peta" { isSaved; in spotifyManager.save(trackId: "Peta", completionHandler: <#T##(Bool) -> Void#>)}
+
+    }
     
     
 }
