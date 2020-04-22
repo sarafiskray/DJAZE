@@ -8,10 +8,17 @@
 
 import UIKit
 
+protocol SongCellDelegate: NSObjectProtocol {
+    func voteUp(index: Int)
+    func voteDown(index: Int)
+}
+
 class SongTableViewCell: UITableViewCell {
     
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
+    
+    var delegate: SongCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +32,7 @@ class SongTableViewCell: UITableViewCell {
     }
     
     @IBAction func dislikeButton(_ sender: Any) {
+        
     }
     @IBAction func likeButton(_ sender: Any) {
     }

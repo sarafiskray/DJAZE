@@ -8,8 +8,17 @@
 
 import UIKit
 import SpotifyKit
+import Firebase
 
-class UserViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UserViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, SongCellDelegate {
+    func voteUp() {
+        <#code#>
+    }
+    
+    func voteDown() {
+        <#code#>
+    }
+    
     
     var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 6, downVoteCount: 15), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 20, downVoteCount: 10), Song(title: "Many Men", artist: "50Cent", upVoteCount: 5, downVoteCount: 2)]
     
@@ -17,8 +26,9 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
     
-
+    var ref: DatabaseReference!
     var searchInfo: [songInfo] = []
+    
     
     var songCounter=0
     var song="song"
@@ -48,6 +58,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as! SongTableViewCell
         cell.songLabel.text = sortedSongs[indexPath.row].title
         cell.artistLabel.text = sortedSongs[indexPath.row].artist
+        cell.delegate = self
         return cell
     }
     
@@ -78,7 +89,18 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
-    func search(_ searchTerm: String) {
+    func sendToDb(_ name: String, _ artist: String)
+    {
+        ref = Database.database().reference()
+        var songNum=song+String(songCounter) //song0 song1 song2 song3
+        songCounter+=1
+        
+        self.ref.child("Songs/\(songNum)/Artist").setValue(artist)
+        self.ref.child("Songs/\(songNum)/SongName").setValue(name)
+    }
+    
+    func search(_ searchTerm: String)
+    {
         //var searchInfo: [songInfo] = []
         searchInfo = []
         let numSongstoReturn = 3
