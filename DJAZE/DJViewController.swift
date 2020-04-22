@@ -15,20 +15,14 @@ class DJViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //customizeProfilePictureView()
-        
-        // Authorize our app for the Spotify account if there is no token
-        // This opens a browser window from which the user can authenticate into his account
-        //spotifyManager.authorize()
-        
-        //loadUser()
     }
     
+    //search button
     
     @IBAction func searchButton(_ sender: Any) {
-        //get text from search box
+        
         var searchTerm = searchTermField.text!
-        //pass to spotifyManager
+        
         search(searchTerm)
     }
     
@@ -51,18 +45,35 @@ class DJViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func search(_ searchTerm: String) {
-        spotifyManager.find(SpotifyTrack.self, searchTerm) { tracks in
-        // Tracks is a [SpotifyTrack] array
-        for track in tracks {
-            print("URI:    \(track.uri), "         +
-                  "Name:   \(track.name), "        +
-                  "Artist: \(track.artist.name) " )
-            }
-        }
+    struct songInfo : Hashable {
+        var uri: String
+        var name: String
+        var artist: String
     }
     
     
+    func search(_ searchTerm: String) {
+        var searchInfo: [songInfo] = []
+        let numSongstoReturn = 3
+        var count = 0
+        spotifyManager.find(SpotifyTrack.self, searchTerm) {
+            tracks in
+                for track in tracks {
+                //print("URI:    \(track.uri), "         +
+                //    "Name:   \(track.name), "        +
+                //    "Artist: \(track.artist.name) " )
+                    var searchResult = songInfo(uri: track.uri, name: track.name, artist: track.artist.name)
+                    searchInfo.append(searchResult)
+                    count += 1
+                    if (count == numSongstoReturn) {
+                        //print(searchInfo)
+                        break
+                    }
+                }
+            }
+        }
+    
+        
     
 
 }
