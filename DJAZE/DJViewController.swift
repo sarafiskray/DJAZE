@@ -90,9 +90,9 @@ class DJViewController: UIViewController {
     }
     
     func updateButtons(_ buttonInfo: [songInfo]) {
-        firstResultButton.setTitle(buttonInfo[0].name + buttonInfo[0].artist, for: [])
-        secondResultButton.setTitle(buttonInfo[1].name + buttonInfo[1].artist, for: [])
-        thirdResultButton.setTitle(buttonInfo[2].name + buttonInfo[2].artist, for: [])
+        firstResultButton.setTitle(buttonInfo[0].name + ", " + buttonInfo[0].artist, for: [])
+        secondResultButton.setTitle(buttonInfo[1].name + ", " + buttonInfo[1].artist, for: [])
+        thirdResultButton.setTitle(buttonInfo[2].name + ", " + buttonInfo[2].artist, for: [])
     }
     
     func search(_ searchTerm: String) {
