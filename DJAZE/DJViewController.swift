@@ -9,9 +9,9 @@ import Firebase
 
 class DJViewController: UIViewController {
     //global
-    var ref: DatabaseReference!
     var searchInfo: [songInfo] = []
-    
+    //firestore
+    let db=Firestore.firestore()
     var songCounter=0
     var song="song"
     
@@ -81,12 +81,16 @@ class DJViewController: UIViewController {
     
     func sendToDb(_ name: String, _ artist: String)
     {
-        ref = Database.database().reference()
+        //ref = Database.database().reference()
         var songNum=song+String(songCounter) //song0 song1 song2 song3
         songCounter+=1
+        var autoid=String(songCounter)
         
-        self.ref.child("Songs/\(songNum)/Artist").setValue(artist)
-        self.ref.child("Songs/\(songNum)/SongName").setValue(name)
+        db.collection("Songs").document(autoid).setData( ["Artist" : artist,"SongName":name], merge:true)
+        //self.ref.child("Songs/\(songNum)/Artist").setValue(artist)
+        //self.ref.child("Songs/\(songNum)/SongName").setValue(name)
+        //self.ref.child("Songs/\(songNum)/Counter").setValue(songCounter)
+
     }
     
     func updateButtons(_ buttonInfo: [songInfo]) {

@@ -11,13 +11,21 @@ import SpotifyKit
 import Firebase
 
 class UserViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, SongCellDelegate {
-    func voteUp() {
-        <#code#>
+    func voteUp(index: Int) {
+        //
     }
     
-    func voteDown() {
-        <#code#>
+    func voteDown(index: Int) {
+        //
     }
+    
+    let db=Firestore.firestore()
+    var autoid=""
+   
+    
+    
+    
+    
     
     
     var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 6, downVoteCount: 15), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 20, downVoteCount: 10), Song(title: "Many Men", artist: "50Cent", upVoteCount: 5, downVoteCount: 2)]
@@ -26,7 +34,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
     
-    var ref: DatabaseReference!
+    //var ref: DatabaseReference!
     var searchInfo: [songInfo] = []
     
     
@@ -91,13 +99,19 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     func sendToDb(_ name: String, _ artist: String)
     {
-        ref = Database.database().reference()
         var songNum=song+String(songCounter) //song0 song1 song2 song3
         songCounter+=1
+        autoid=String(songCounter)
         
-        self.ref.child("Songs/\(songNum)/Artist").setValue(artist)
-        self.ref.child("Songs/\(songNum)/SongName").setValue(name)
+        db.collection("Songs").document(autoid).setData( ["SongNum":autoid,"Artist" : artist,"SongName":name], merge:true)
+        
     }
+    
+    
+    @IBAction func refreshDb(_ sender: Any) {
+        
+    }
+    
     
     func search(_ searchTerm: String)
     {

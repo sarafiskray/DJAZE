@@ -7,8 +7,6 @@ target 'DJAZE' do
 
   # Pods for DJAZE
 	pod 'SpotifyKit'
-  pod 'Firebase/Database'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Core'
+  	pod 'Firebase/Firestore'
 
 end

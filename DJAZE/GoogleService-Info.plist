@@ -3,34 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>832211977146-i242qmtut4dlaq0h31lavfmgndfmpfpc.apps.googleusercontent.com</string>
+	<string>820911311485-fi62o9ni1ff0a1uh2hdcl5iejunlktul.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.832211977146-i242qmtut4dlaq0h31lavfmgndfmpfpc</string>
+	<string>com.googleusercontent.apps.820911311485-fi62o9ni1ff0a1uh2hdcl5iejunlktul</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBcCO_k8Y_xUDrzNedIKOib0cQbg3e153o</string>
+	<string>AIzaSyCLcuqiJueUByPsw2LiSrG4dhxChzrDHoA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>832211977146</string>
+	<string>820911311485</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.DJAZE.DJAZE</string>
 	<key>PROJECT_ID</key>
-	<string>djaze-8d180</string>
+	<string>djazerealtime</string>
 	<key>STORAGE_BUCKET</key>
-	<string>djaze-8d180.appspot.com</string>
+	<string>djazerealtime.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:832211977146:ios:6aee729ea400220a4b1383</string>
+	<string>1:820911311485:ios:59b79ead8aea574e557f14</string>
 	<key>DATABASE_URL</key>
-	<string>https://djaze-8d180.firebaseio.com</string>
+	<string>https://djazerealtime.firebaseio.com</string>
 </dict>
 </plist>
