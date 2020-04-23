@@ -11,13 +11,6 @@ import SpotifyKit
 import Firebase
 
 class UserViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, SongCellDelegate {
-    func voteUp(index: Int) {
-        //
-    }
-    
-    func voteDown(index: Int) {
-        //
-    }
     
     let db=Firestore.firestore()
     var autoid=""
@@ -28,7 +21,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     
     
-    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 6, downVoteCount: 15), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 20, downVoteCount: 10), Song(title: "Many Men", artist: "50Cent", upVoteCount: 5, downVoteCount: 2)]
+    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
     
     lazy var sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
     
@@ -58,6 +51,29 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
+    // vote functions for requested songs
+    func voteUp(index: Int) {
+        songs[index].voteUp()
+        songs[index].refreshAggVote()
+        print("\(songs[index].title): \(songs[index].aggVote)")
+        sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+    }
+    
+    func voteDown(index: Int) {
+        songs[index].voteDown()
+        songs[index].refreshAggVote()
+        print("\(songs[index].title): \(songs[index].aggVote)")
+        sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+    }
+    
+//    func getUpVoteCount(index: Int) -> Int {
+//        return songs[index].upVoteCount
+//    }
+//
+//    func getDownVoteCount(index: Int) -> Int {
+//        return songs[index].downVoteCount
+//    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
     }
@@ -67,6 +83,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         cell.songLabel.text = sortedSongs[indexPath.row].title
         cell.artistLabel.text = sortedSongs[indexPath.row].artist
         cell.delegate = self
+        cell.tag = indexPath.row
         return cell
     }
     
