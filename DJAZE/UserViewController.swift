@@ -16,6 +16,8 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     let db=Firestore.firestore()
     var autoid=""
     
+    var currentSongTitle = ""
+    var currentSongArtist = ""
     
     
     var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
@@ -63,36 +65,34 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(getCurrentSong())
-        
-        nowPlayingSongLabel.text = currentSong.title
-        nowPlayingArtistLabel.text = currentSong.artist
+        getCurrentSong()
+        //nowPlayingSongLabel.text = currentSong.title
+        //nowPlayingArtistLabel.text = currentSong.artist
         sortSongs()
         
     }
     
-    func getCurrentSong() -> (title: String, artist: String) {
-        var nowPlayingSongTitle = ""
-        var nowPlayingArtist = ""
+    func updateCurrentSongLabel(_ title: String, _ artist: String) {
+        nowPlayingSongLabel.text = title
+        nowPlayingArtistLabel.text = artist
+    }
+    
+    func getCurrentSong() {
         db.collection("SongsPlayed").order(by: "Counter", descending: true).limit(to: 1)
-            .getDocuments() { (querySnapshot, err) in
+            .getDocuments()  { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
                         //print("\(document.data()["Artist"]!)")
                         //print("\(document.data()["SongName"]!)")
-                        let currentTitle = document.data()["Artist"]! as! String
-                        let currentArtist = document.data()["SongName"]! as! String
-                        nowPlayingSongTitle = currentTitle
-                        nowPlayingArtist = currentArtist
-                        print(nowPlayingSongTitle)
-                        print(nowPlayingArtist)
+                        self.currentSongTitle = document.data()["Artist"]! as! String
+                        self.currentSongArtist = document.data()["SongName"]! as! String
+                        self.updateCurrentSongLabel(self.currentSongTitle, self.currentSongArtist)
                         //self.currentSong = Song(title: currentTitle, artist: currentArtist, upVoteCount: 0, downVoteCount: 0)
                     }
                 }
         }
-       return (nowPlayingSongTitle, nowPlayingArtist)
     }
     
     
