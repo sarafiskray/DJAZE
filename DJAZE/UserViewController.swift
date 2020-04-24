@@ -15,10 +15,6 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     let db=Firestore.firestore()
     var autoid=""
-   
-    
-    
-    
     
     
     
@@ -40,15 +36,17 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var searchTermTextField: UITextField!
     @IBOutlet weak var nowPlayingSongLabel: UILabel!
     @IBOutlet weak var nowPlayingArtistLabel: UILabel!
+    @IBOutlet weak var requestedSongsTableView: UITableView!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print(getCurrentSong())
-        nowPlayingSongLabel.text = currentSong.title
-        nowPlayingArtistLabel.text = currentSong.artist
-
+        
+        nowPlayingSongLabel.text = getCurrentSong().title
+        nowPlayingArtistLabel.text = getCurrentSong().artist
+        sortSongs()
         
     }
     
@@ -78,15 +76,23 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
        return (nowPlayingSongTitle, nowPlayingArtist)
     }
     
+    
+    func sortSongs() {
+        sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+    }
+    
+    
     // vote functions for requested songs
     func voteUp(index: Int) {
         songs[index].voteUp()
-        //sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+        sortSongs()
+        self.requestedSongsTableView.reloadData()
     }
     
     func voteDown(index: Int) {
         songs[index].voteDown()
-        //sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+        sortSongs()
+        requestedSongsTableView.reloadData()
     }
     
     func getUpVoteCount(index: Int) -> Int {
@@ -96,6 +102,9 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     func getDownVoteCount(index: Int) -> Int {
         return songs[index].downVoteCount
     }
+    
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
@@ -134,9 +143,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         currentSong.voteUp()
     }
     @IBAction func addButton(_ sender: Any) {
-//        spotifyManager.isSaved(trackId: "Peta" { isSaved; in spotifyManager.save(trackId: "Peta", completionHandler: <#T##(Bool) -> Void#>)}
-        print(currentSong.aggVote)
-
+//        spotifyManager.save(track: SpotifyTrack.self, completionHandler: print("song was saved"))
     }
     
     func sendToDb(_ name: String, _ artist: String)
@@ -151,7 +158,8 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     
     @IBAction func refreshDb(_ sender: Any) {
-        
+        nowPlayingSongLabel.text = getCurrentSong().title
+        nowPlayingArtistLabel.text = getCurrentSong().artist
     }
     
     

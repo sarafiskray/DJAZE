@@ -41,14 +41,12 @@ class SongTableViewCell: UITableViewCell {
     @IBAction func dislikeButton(_ sender: Any) {
         if let delegate = delegate  {
             delegate.voteDown(index: self.tag)
-            downVoteCountLabel.text = "\(delegate.getDownVoteCount(index: self.tag))"
         }
     }
     
     @IBAction func likeButton(_ sender: Any) {
         if let delegate = delegate  {
             delegate.voteUp(index: self.tag)
-            upVoteCountLabel.text = "\(delegate.getUpVoteCount(index: self.tag))"
         }
     }
     

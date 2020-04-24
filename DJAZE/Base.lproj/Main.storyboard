@@ -320,6 +320,7 @@
                     <connections>
                         <outlet property="nowPlayingArtistLabel" destination="TaR-IU-cpI" id="EuD-5X-hWg"/>
                         <outlet property="nowPlayingSongLabel" destination="nyW-kq-IO9" id="fTL-ZP-wxu"/>
+                        <outlet property="requestedSongsTableView" destination="Jf5-zS-DlM" id="rop-XA-XXc"/>
                         <outlet property="searchTermTextField" destination="J1u-dh-1Te" id="OlS-S0-HsZ"/>
                     </connections>
                 </viewController>
