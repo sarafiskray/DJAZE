@@ -26,10 +26,12 @@ class Song: Codable {
     
     func voteUp() {
         self.upVoteCount += 1
+        refreshAggVote()
     }
     
     func voteDown() {
         self.downVoteCount += 1
+        refreshAggVote()
     }
     
     func refreshAggVote() {

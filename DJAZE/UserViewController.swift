@@ -10,6 +10,7 @@ import UIKit
 import SpotifyKit
 import Firebase
 
+
 class UserViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, SongCellDelegate {
     
     let db=Firestore.firestore()
@@ -48,31 +49,27 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         nowPlayingSongLabel.text = currentSong.title
         nowPlayingArtistLabel.text = currentSong.artist
         
+        
     }
-    
     
     // vote functions for requested songs
     func voteUp(index: Int) {
         songs[index].voteUp()
-        songs[index].refreshAggVote()
-        print("\(songs[index].title): \(songs[index].aggVote)")
-        sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+        //sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
     }
     
     func voteDown(index: Int) {
         songs[index].voteDown()
-        songs[index].refreshAggVote()
-        print("\(songs[index].title): \(songs[index].aggVote)")
-        sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+        //sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
     }
     
-//    func getUpVoteCount(index: Int) -> Int {
-//        return songs[index].upVoteCount
-//    }
-//
-//    func getDownVoteCount(index: Int) -> Int {
-//        return songs[index].downVoteCount
-//    }
+    func getUpVoteCount(index: Int) -> Int {
+        return songs[index].upVoteCount
+    }
+
+    func getDownVoteCount(index: Int) -> Int {
+        return songs[index].downVoteCount
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
@@ -82,6 +79,8 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as! SongTableViewCell
         cell.songLabel.text = sortedSongs[indexPath.row].title
         cell.artistLabel.text = sortedSongs[indexPath.row].artist
+        cell.downVoteCountLabel.text = "\(sortedSongs[indexPath.row].downVoteCount)"
+        cell.upVoteCountLabel.text = "\(sortedSongs[indexPath.row].upVoteCount)"
         cell.delegate = self
         cell.tag = indexPath.row
         return cell

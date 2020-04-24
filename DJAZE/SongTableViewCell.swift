@@ -11,11 +11,12 @@ import UIKit
 protocol SongCellDelegate: NSObjectProtocol {
     func voteUp(index: Int)
     func voteDown(index: Int)
-//    func getDownVoteCount(index: Int)
-//    func getUpVoteCount(index: Int)
+    func getDownVoteCount(index: Int) -> Int
+    func getUpVoteCount(index: Int) -> Int
 }
 
 class SongTableViewCell: UITableViewCell {
+    
     
     @IBOutlet weak var songLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
@@ -27,12 +28,6 @@ class SongTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-//        if let delegate = delegate {
-//            downVoteCountLabel.text = delegate.getDownVoteCount(index: self.tag)
-//        }
-//        if let delegate = delegate {
-//            upVoteCountLabel.text = delegate.getUpVoteCount(index: self.tag)
-//        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,15 +36,19 @@ class SongTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+
+    
     @IBAction func dislikeButton(_ sender: Any) {
         if let delegate = delegate  {
             delegate.voteDown(index: self.tag)
+            downVoteCountLabel.text = "\(delegate.getDownVoteCount(index: self.tag))"
         }
     }
     
     @IBAction func likeButton(_ sender: Any) {
         if let delegate = delegate  {
             delegate.voteUp(index: self.tag)
+            upVoteCountLabel.text = "\(delegate.getUpVoteCount(index: self.tag))"
         }
     }
     
