@@ -39,9 +39,30 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var requestedSongsTableView: UITableView!
     
     
+    @IBOutlet var firstResultButton: UIButton!
+    @IBOutlet var secondResultButton: UIButton!
+    @IBOutlet var thirdResultButton: UIButton!
+    
+    
+    @IBAction func selectFirstResult(_ sender: Any) {
+        sendToDb(searchInfo[0].name, searchInfo[0].artist)
+    }
+    
+    
+    @IBAction func selectSecondResult(_ sender: Any) {
+        sendToDb(searchInfo[1].name, searchInfo[1].artist)
+
+    }
+    
+    
+    @IBAction func selectThirdResult(_ sender: Any) {
+        sendToDb(searchInfo[2].name, searchInfo[2].artist)
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         print(getCurrentSong())
         
         nowPlayingSongLabel.text = getCurrentSong().title
@@ -68,8 +89,6 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
                         print(nowPlayingSongTitle)
                         print(nowPlayingArtist)
                         //self.currentSong = Song(title: currentTitle, artist: currentArtist, upVoteCount: 0, downVoteCount: 0)
-                        //print(currentTitle)
-                        //print(currentArtist)
                     }
                 }
         }
@@ -152,34 +171,34 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         songCounter+=1
         autoid=String(songCounter)
         
-        db.collection("Songs").document(autoid).setData( ["SongNum":autoid,"Artist" : artist,"SongName":name], merge:true)
+        db.collection("songsRequested").document(autoid).setData( ["SongNum":autoid,"Artist" : artist,"SongName":name], merge:true)
         
     }
     
-    
-    @IBAction func refreshDb(_ sender: Any) {
-        nowPlayingSongLabel.text = getCurrentSong().title
-        nowPlayingArtistLabel.text = getCurrentSong().artist
+    func updateButtons(_ buttonInfo: [songInfo]) {
+        firstResultButton.setTitle(buttonInfo[0].name + ", " + buttonInfo[0].artist, for: [])
+        secondResultButton.setTitle(buttonInfo[1].name + ", " + buttonInfo[1].artist, for: [])
+        thirdResultButton.setTitle(buttonInfo[2].name + ", " + buttonInfo[2].artist, for: [])
     }
     
     
-    func search(_ searchTerm: String)
-    {
-        //var searchInfo: [songInfo] = []
-        searchInfo = []
-        let numSongstoReturn = 3
-        var count = 0
-        spotifyManager.find(SpotifyTrack.self, searchTerm) {
-            tracks in
-                for track in tracks {
-                    var searchResult = songInfo(uri: track.uri, name: track.name, artist: track.artist.name)
-                    self.searchInfo.append(searchResult)
-                    count += 1
-//                    self.songs.append(Song(title: track.name, artist: track.artist.name, upVoteCount: 0, downVoteCount: 0))
-                 
+    func search(_ searchTerm: String) {
+    //var searchInfo: [songInfo] = []
+    searchInfo = []
+    let numSongstoReturn = 3
+    var count = 0
+    spotifyManager.find(SpotifyTrack.self, searchTerm) {
+        tracks in
+            for track in tracks {
+                var searchResult = songInfo(uri: track.uri, name: track.name, artist: track.artist.name)
+                self.searchInfo.append(searchResult)
+                count += 1
+                if (count == numSongstoReturn) {
+                    //print(searchInfo[0].name)
+                    self.updateButtons(self.searchInfo)
+                    break
+                }
             }
-            
-            
         }
     }
     
