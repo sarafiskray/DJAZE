@@ -22,7 +22,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     lazy var sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
     
-    var currentSong = Song(title: "", artist: "", upVoteCount: 0, downVoteCount: 0)
+    var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
     
     //var ref: DatabaseReference!
     var searchInfo: [songInfo] = []
@@ -65,8 +65,8 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         
         print(getCurrentSong())
         
-        nowPlayingSongLabel.text = getCurrentSong().title
-        nowPlayingArtistLabel.text = getCurrentSong().artist
+        nowPlayingSongLabel.text = currentSong.title
+        nowPlayingArtistLabel.text = currentSong.artist
         sortSongs()
         
     }
