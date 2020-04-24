@@ -86,7 +86,9 @@ class DJViewController: UIViewController {
         songCounter+=1
         var autoid=String(songCounter)
         
-        db.collection("Songs").document(autoid).setData( ["Artist" : artist,"SongName":name], merge:true)
+        db.collection("SongsPlayed").document(autoid).setData( ["Artist" : artist,
+                                                                "SongName" : name,
+                                                                "Counter" : songCounter], merge:true)
         //self.ref.child("Songs/\(songNum)/Artist").setValue(artist)
         //self.ref.child("Songs/\(songNum)/SongName").setValue(name)
         //self.ref.child("Songs/\(songNum)/Counter").setValue(songCounter)
