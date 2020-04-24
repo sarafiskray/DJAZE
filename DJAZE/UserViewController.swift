@@ -53,8 +53,16 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func getCurrentSong() -> (title: String, artist: String) {
-        var songsPlayedRef = db.collection("SongsPlayed")
-        var songPlaying = songsPlayedRef.order(by: "Counter", descending: true).limit(to: 1)
+        db.collection("SongsPlayed").order(by: "Counter", descending: true).limit(to: 1)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                    }
+                }
+        }
         //let songsPlayedRef = db.collection("songsPlayed").addSnapshotListener{ }
         //let songsPlayedRef = db.collection("songsPlayed")
         //var songPlaying = songsPlayedRef.order(by: "Counter")
