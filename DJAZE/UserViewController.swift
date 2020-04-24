@@ -13,6 +13,14 @@ import Firebase
 
 class UserViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, SongCellDelegate {
     
+    var first=true
+    var backForwardSong:[String]=[]
+    var backForwardArtist:[String]=[]
+    var carouselCounter=1
+    var carouselPlace=1
+    var displaySong=""
+    var displayArtist=""
+    
     let db=Firestore.firestore()
     var autoid=""
     
@@ -62,10 +70,45 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
+    
+    @IBAction func back(_ sender: Any)
+    {
+        if carouselPlace-1>=0
+        {
+            if first==true{
+                self.carouselPlace-=2
+                self.first=false
+            }else{
+                self.carouselPlace-=1
+            }
+            
+            print("Carousel Place: ",carouselPlace)
+            print("Total Songs",carouselCounter)
+            nowPlayingSongLabel.text = self.backForwardSong[self.carouselPlace]
+            nowPlayingArtistLabel.text = self.backForwardArtist[self.carouselPlace]
+        }
+    }
+    
+    @IBAction func forward(_ sender: Any)
+    {
+        if carouselPlace+2<carouselCounter
+        {
+            self.carouselPlace+=1
+            print("Carousel Place: ", carouselPlace)
+            print("Total Songs:",carouselCounter)
+            nowPlayingSongLabel.text = self.backForwardSong[self.carouselPlace]
+            nowPlayingArtistLabel.text = self.backForwardArtist[self.carouselPlace]
+        }
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.first=true
         getCurrentSong()
+        populate()
         //nowPlayingSongLabel.text = currentSong.title
         //nowPlayingArtistLabel.text = currentSong.artist
         sortSongs()
@@ -73,8 +116,8 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func updateCurrentSongLabel(_ title: String, _ artist: String) {
-        nowPlayingSongLabel.text = title
-        nowPlayingArtistLabel.text = artist
+        nowPlayingSongLabel.text = artist
+        nowPlayingArtistLabel.text = title
     }
     
     func getCurrentSong() {
@@ -181,6 +224,36 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         thirdResultButton.setTitle(buttonInfo[2].name + ", " + buttonInfo[2].artist, for: [])
     }
     
+    func appendSong(_ song:String,_ artist:String, _ counter:Int)
+    {
+        self.backForwardArtist.append(artist)
+        self.backForwardSong.append(song)
+        self.carouselCounter=counter
+        self.carouselPlace=self.carouselCounter
+    }
+
+
+    func populate(){
+        db.collection("SongsPlayed").order(by: "Counter", descending:false)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        self.displaySong=document.data()["SongName"]! as! String
+
+                        self.displayArtist=document.data()["Artist"]! as! String
+                            
+                        
+                        
+                        self.appendSong(self.displaySong, self.displayArtist, self.carouselCounter)
+                        self.carouselCounter+=1
+                    }
+                }
+        }
+    }
+
     
     func search(_ searchTerm: String) {
     //var searchInfo: [songInfo] = []
@@ -204,3 +277,10 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     
 }
+
+
+
+
+
+
+
