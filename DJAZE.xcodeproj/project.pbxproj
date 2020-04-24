@@ -12,6 +12,7 @@
 		303F63154D71CE4B5C3EC3BA /* Pods_DJAZE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F651BBE8877E05C6B8B9DB9 /* Pods_DJAZE.framework */; };
 		4D2A054C24521C7700638A16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D2A054B24521C7700638A16 /* GoogleService-Info.plist */; };
 		C2086A962450A7AF0081D795 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2086A952450A7AF0081D795 /* Song.swift */; };
+		C224F3422453884800503744 /* DJSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C224F3412453884800503744 /* DJSongTableViewCell.swift */; };
 		C237D0B724508D5B00296D81 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C237D0B624508D5B00296D81 /* SongTableViewCell.swift */; };
 		C23AA83A244F35F30006B1A2 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AA839244F35F30006B1A2 /* UIImageView+Download.swift */; };
 		C275E635244F349600CB4AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C275E634244F349600CB4AB4 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		5BBDCAA1D54B1C14EF2A5602 /* Pods-DJAZE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJAZE.release.xcconfig"; path = "Target Support Files/Pods-DJAZE/Pods-DJAZE.release.xcconfig"; sourceTree = "<group>"; };
 		7F651BBE8877E05C6B8B9DB9 /* Pods_DJAZE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJAZE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2086A952450A7AF0081D795 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		C224F3412453884800503744 /* DJSongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJSongTableViewCell.swift; sourceTree = "<group>"; };
 		C237D0B624508D5B00296D81 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		C23AA839244F35F30006B1A2 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 		C275E631244F349600CB4AB4 /* DJAZE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJAZE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +100,7 @@
 				C23AA839244F35F30006B1A2 /* UIImageView+Download.swift */,
 				C275E63A244F349600CB4AB4 /* Main.storyboard */,
 				C237D0B624508D5B00296D81 /* SongTableViewCell.swift */,
+				C224F3412453884800503744 /* DJSongTableViewCell.swift */,
 				C2086A952450A7AF0081D795 /* Song.swift */,
 				06C4AD02244FA78700CED7CA /* DJViewController.swift */,
 				06C4AD04244FAC0D00CED7CA /* UserViewController.swift */,
@@ -228,6 +231,7 @@
 				C23AA83A244F35F30006B1A2 /* UIImageView+Download.swift in Sources */,
 				06C4AD05244FAC0D00CED7CA /* UserViewController.swift in Sources */,
 				C275E639244F349600CB4AB4 /* ViewController.swift in Sources */,
+				C224F3422453884800503744 /* DJSongTableViewCell.swift in Sources */,
 				C237D0B724508D5B00296D81 /* SongTableViewCell.swift in Sources */,
 				C2086A962450A7AF0081D795 /* Song.swift in Sources */,
 				C275E635244F349600CB4AB4 /* AppDelegate.swift in Sources */,

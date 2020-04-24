@@ -7,7 +7,8 @@ import UIKit
 import SpotifyKit
 import Firebase
 
-class DJViewController: UIViewController {
+class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DJSongCellDelegate {
+    
     //global
     var searchInfo: [songInfo] = []
     //firestore
@@ -15,7 +16,13 @@ class DJViewController: UIViewController {
     var songCounter=0
     var song="song"
     
-    // MARK: Outlets
+    
+    // hard coded songs
+    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
+    
+    lazy var sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+    
+    
     @IBOutlet var searchTermField: UITextField!
     
     @IBOutlet var firstResultButton: UIButton!
@@ -121,9 +128,32 @@ class DJViewController: UIViewController {
                 }
             }
         }
-    
         
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return songs.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "requestedSongCell", for: indexPath) as! DJSongTableViewCell
+        cell.songLabel.text = sortedSongs[indexPath.row].title
+        cell.artistLabel.text = sortedSongs[indexPath.row].artist
+        cell.downVoteCountLabel.text = "\(sortedSongs[indexPath.row].downVoteCount)"
+        cell.upVoteCountLabel.text = "\(sortedSongs[indexPath.row].upVoteCount)"
+        cell.delegate = self
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
+    func getDownVoteCount(index: Int) -> Int {
+        return 0
+    }
+    
+    func getUpVoteCount(index: Int) -> Int {
+        return 0
+    }
 
 }
 
