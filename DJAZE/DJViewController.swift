@@ -11,6 +11,10 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     //global
     var searchInfo: [songInfo] = []
+    var requestedSongs: [Song] = []
+    var songReqTitle = ""
+    var songReqArtist = ""
+    var songReq : Song = Song(title: "", artist: "", upVoteCount: 0, downVoteCount: 0)
     //firestore
     let db=Firestore.firestore()
     var songCounter=0
@@ -39,7 +43,8 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getRequestedSongs()
+        print(requestedSongs)
         
     }
     
@@ -171,5 +176,29 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return 0
     }
 
+    
+    
+    
+    func addToReqs(_ songreq: Song) {
+        requestedSongs.append(songreq)
+    }
+    
+    //query for getting requested songs
+    func getRequestedSongs() {
+        let requestsRef = db.collection("songsRequested")
+        requestsRef.getDocuments() { (querySnapshot, err) in
+        if let err = err {
+            print("Error getting documents: \(err)")
+        } else {
+            for document in querySnapshot!.documents {
+                //print("\(document.documentID) => \(document.data())")
+                self.songReqTitle = document.data()["SongName"] as! String
+                self.songReqArtist = document.data()["Artist"] as! String
+                self.songReq = Song(title: self.songReqTitle, artist: self.songReqArtist, upVoteCount: 0, downVoteCount: 0)
+                self.addToReqs(self.songReq)
+            }
+        }
+    }
 }
 
+}
