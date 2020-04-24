@@ -26,7 +26,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     lazy var sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
     
-    var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
+    var currentSong = Song(title: "", artist: "", upVoteCount: 0, downVoteCount: 0)
     
     //var ref: DatabaseReference!
     var searchInfo: [songInfo] = []
@@ -45,29 +45,37 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getCurrentSong()
+        print(getCurrentSong())
         nowPlayingSongLabel.text = currentSong.title
         nowPlayingArtistLabel.text = currentSong.artist
-        
+
         
     }
     
     func getCurrentSong() -> (title: String, artist: String) {
+        var nowPlayingSongTitle = ""
+        var nowPlayingArtist = ""
         db.collection("SongsPlayed").order(by: "Counter", descending: true).limit(to: 1)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
+                        //print("\(document.data()["Artist"]!)")
+                        //print("\(document.data()["SongName"]!)")
+                        let currentTitle = document.data()["Artist"]! as! String
+                        let currentArtist = document.data()["SongName"]! as! String
+                        nowPlayingSongTitle = currentTitle
+                        nowPlayingArtist = currentArtist
+                        print(nowPlayingSongTitle)
+                        print(nowPlayingArtist)
+                        //self.currentSong = Song(title: currentTitle, artist: currentArtist, upVoteCount: 0, downVoteCount: 0)
+                        //print(currentTitle)
+                        //print(currentArtist)
                     }
                 }
         }
-        //let songsPlayedRef = db.collection("songsPlayed").addSnapshotListener{ }
-        //let songsPlayedRef = db.collection("songsPlayed")
-        //var songPlaying = songsPlayedRef.order(by: "Counter")
-        //print(songPlaying)
-        return ("", "")
+       return (nowPlayingSongTitle, nowPlayingArtist)
     }
     
     // vote functions for requested songs
