@@ -25,8 +25,6 @@ class SongTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var dislikeButtonLabel: UIButton!
-    
-    
     @IBOutlet weak var likeButtonLabel: UIButton!
     
     var delegate: SongCellDelegate?

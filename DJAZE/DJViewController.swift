@@ -43,6 +43,11 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
+    func updateCurrentSongLabel(_ title: String, _ artist: String) {
+        nowPlayingSongLabel.text = title
+        nowPlayingArtistLabel.text = artist
+    }
+    
     //search button
     
     @IBAction func searchButton(_ sender: Any) {
@@ -81,16 +86,19 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBAction func selectFirstResult(_ sender: Any)
     {
         sendToDb(searchInfo[0].name, searchInfo[0].artist)
+        updateCurrentSongLabel(searchInfo[0].name, searchInfo[0].artist)
     }
     @IBAction func selectSecondResult(_ sender: Any)
     {
         sendToDb(searchInfo[1].name, searchInfo[1].artist)
+        updateCurrentSongLabel(searchInfo[1].name, searchInfo[1].artist)
 
     }
     
     @IBAction func selectThirdResult(_ sender: Any)
     {
         sendToDb(searchInfo[2].name, searchInfo[2].artist)
+        updateCurrentSongLabel(searchInfo[2].name, searchInfo[2].artist)
 
     }
     
