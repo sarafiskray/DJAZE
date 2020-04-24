@@ -25,6 +25,14 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBOutlet var searchTermField: UITextField!
     
+    @IBOutlet weak var nowPlayingSongLabel: UILabel!
+    @IBOutlet weak var nowPlayingArtistLabel: UILabel!
+    @IBOutlet weak var nowPlayingDownVoteCount: UILabel!
+    @IBOutlet weak var nowPlayingUpVoteCount: UILabel!
+    
+    
+    
+    
     @IBOutlet var firstResultButton: UIButton!
     @IBOutlet var secondResultButton: UIButton!
     @IBOutlet var thirdResultButton: UIButton!

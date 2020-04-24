@@ -162,7 +162,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         currentSong.voteUp()
     }
     @IBAction func addButton(_ sender: Any) {
-//        spotifyManager.save(track: SpotifyTrack.self, completionHandler: print("song was saved"))
+//        spotifyManager.isSaved(track: SpotifyTrack.self, completionHandler: spotifyManager.save(track: SpotifyTrack.self, completionHandler: print("error")))
     }
     
     func sendToDb(_ name: String, _ artist: String)
