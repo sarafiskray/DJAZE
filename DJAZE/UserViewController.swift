@@ -45,11 +45,21 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getCurrentSong()
         nowPlayingSongLabel.text = currentSong.title
         nowPlayingArtistLabel.text = currentSong.artist
         
         
+    }
+    
+    func getCurrentSong() -> (title: String, artist: String) {
+        var songsPlayedRef = db.collection("SongsPlayed")
+        var songPlaying = songsPlayedRef.order(by: "Counter", descending: true).limit(to: 1)
+        //let songsPlayedRef = db.collection("songsPlayed").addSnapshotListener{ }
+        //let songsPlayedRef = db.collection("songsPlayed")
+        //var songPlaying = songsPlayedRef.order(by: "Counter")
+        //print(songPlaying)
+        return ("", "")
     }
     
     // vote functions for requested songs
