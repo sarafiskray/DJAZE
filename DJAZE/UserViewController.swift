@@ -75,15 +75,17 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     {
         if carouselPlace-1>=0
         {
-            if first==true{
+            if first==true && carouselPlace-1 != 0
+            {
                 self.carouselPlace-=2
                 self.first=false
-            }else{
+            }
+            else{
                 self.carouselPlace-=1
             }
             
-            print("Carousel Place: ",carouselPlace)
-            print("Total Songs",carouselCounter)
+            print("Carousel Place: ",carouselPlace+1)
+            print("Total Songs",carouselCounter-1)
             nowPlayingSongLabel.text = self.backForwardSong[self.carouselPlace]
             nowPlayingArtistLabel.text = self.backForwardArtist[self.carouselPlace]
         }
@@ -94,8 +96,8 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         if carouselPlace+2<carouselCounter
         {
             self.carouselPlace+=1
-            print("Carousel Place: ", carouselPlace)
-            print("Total Songs:",carouselCounter)
+            print("Carousel Place: ", carouselPlace+1)
+            print("Total Songs:",carouselCounter-1)
             nowPlayingSongLabel.text = self.backForwardSong[self.carouselPlace]
             nowPlayingArtistLabel.text = self.backForwardArtist[self.carouselPlace]
         }
