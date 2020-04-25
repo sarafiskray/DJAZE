@@ -35,7 +35,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
 //    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
     
-    lazy var sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
+    //lazy var sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
     
     var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
     
@@ -125,7 +125,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         populate()
         //nowPlayingSongLabel.text = currentSong.title
         //nowPlayingArtistLabel.text = currentSong.artist
-        sortSongs()
+        //sortSongs()
         
     }
     
@@ -154,21 +154,21 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    func sortSongs() {
-        sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
-    }
+//    func sortSongs() {
+//        sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
+//    }
     
     
     // vote functions for requested songs
     func voteUp(index: Int) {
         requestedSongs[index].voteUp()
-        sortSongs()
+        //sortSongs()
         self.requestedSongsTableView.reloadData()
     }
     
     func voteDown(index: Int) {
         requestedSongs[index].voteDown()
-        sortSongs()
+        //sortSongs()
         requestedSongsTableView.reloadData()
     }
     
@@ -189,10 +189,10 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as! SongTableViewCell
-        cell.songLabel.text = sortedSongs[indexPath.row].title
-        cell.artistLabel.text = sortedSongs[indexPath.row].artist
-        cell.downVoteCountLabel.text = "\(sortedSongs[indexPath.row].downVoteCount)"
-        cell.upVoteCountLabel.text = "\(sortedSongs[indexPath.row].upVoteCount)"
+        cell.songLabel.text = requestedSongs[indexPath.row].title
+        cell.artistLabel.text = requestedSongs[indexPath.row].artist
+        cell.downVoteCountLabel.text = "\(requestedSongs[indexPath.row].downVoteCount)"
+        cell.upVoteCountLabel.text = "\(requestedSongs[indexPath.row].upVoteCount)"
         cell.delegate = self
         cell.tag = indexPath.row
         return cell
@@ -292,7 +292,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     func addToReqs(_ songreq: Song) {
         requestedSongs.append(songreq)
-        sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
+        //sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
         
     }
     
