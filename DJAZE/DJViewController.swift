@@ -201,7 +201,7 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.sortedSongs = self.requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
             self.djRequestedSongsTableView.reloadData()
         }
-            
+    
     }
 }
 

@@ -21,6 +21,11 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     var displaySong=""
     var displayArtist=""
     
+    var requestedSongs: [Song] = []
+    var songReqTitle = ""
+    var songReqArtist = ""
+    var songReq : Song = Song(title: "", artist: "", upVoteCount: 0, downVoteCount: 0)
+    
     let db=Firestore.firestore()
     var autoid=""
     
@@ -28,9 +33,9 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     var currentSongArtist = ""
     
     
-    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
+//    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
     
-    lazy var sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+    lazy var sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
     
     var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
     
@@ -56,18 +61,25 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func selectFirstResult(_ sender: Any) {
         sendToDb(searchInfo[0].name, searchInfo[0].artist)
+        songReq = Song(title: searchInfo[0].name, artist: searchInfo[0].artist, upVoteCount: 0, downVoteCount: 0)
+        addToReqs(songReq)
+        requestedSongsTableView.reloadData()
     }
     
     
     @IBAction func selectSecondResult(_ sender: Any) {
         sendToDb(searchInfo[1].name, searchInfo[1].artist)
-
+        songReq = Song(title: searchInfo[1].name, artist: searchInfo[1].artist, upVoteCount: 0, downVoteCount: 0)
+        addToReqs(songReq)
+        requestedSongsTableView.reloadData()
     }
     
     
     @IBAction func selectThirdResult(_ sender: Any) {
         sendToDb(searchInfo[2].name, searchInfo[2].artist)
-
+        songReq = Song(title: searchInfo[2].name, artist: searchInfo[2].artist, upVoteCount: 0, downVoteCount: 0)
+        addToReqs(songReq)
+        requestedSongsTableView.reloadData()
     }
     
     
@@ -138,40 +150,41 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
                     }
                 }
         }
+        print(requestedSongs)
     }
     
     
     func sortSongs() {
-        sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+        sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
     }
     
     
     // vote functions for requested songs
     func voteUp(index: Int) {
-        songs[index].voteUp()
+        requestedSongs[index].voteUp()
         sortSongs()
         self.requestedSongsTableView.reloadData()
     }
     
     func voteDown(index: Int) {
-        songs[index].voteDown()
+        requestedSongs[index].voteDown()
         sortSongs()
         requestedSongsTableView.reloadData()
     }
     
     func getUpVoteCount(index: Int) -> Int {
-        return songs[index].upVoteCount
+        return requestedSongs[index].upVoteCount
     }
 
     func getDownVoteCount(index: Int) -> Int {
-        return songs[index].downVoteCount
+        return requestedSongs[index].downVoteCount
     }
     
     
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return requestedSongs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -277,12 +290,32 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    func addToReqs(_ songreq: Song) {
+        requestedSongs.append(songreq)
+        sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
+        
+    }
+    
+    //query for getting requested songs
+    func getRequestedSongs() {
+        requestedSongs.removeAll()
+        let requestsRef = db.collection("songsRequested")
+        requestsRef.getDocuments() { (querySnapshot, err) in
+        if let err = err {
+            print("Error getting documents: \(err)")
+        } else {
+            for document in querySnapshot!.documents {
+                //print("\(document.documentID) => \(document.data())")
+                self.songReqTitle = document.data()["SongName"] as! String
+                self.songReqArtist = document.data()["Artist"] as! String
+                self.songReq = Song(title: self.songReqTitle, artist: self.songReqArtist, upVoteCount: 0, downVoteCount: 0)
+                self.addToReqs(self.songReq)
+                
+            }
+        }
+    
+    }
+    
     
 }
-
-
-
-
-
-
-
+}
