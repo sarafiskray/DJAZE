@@ -217,6 +217,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="WnP-0K-8ob"/>
                     <connections>
+                        <outlet property="djRequestedSongsTableView" destination="CqJ-2B-Edo" id="6OC-NB-tzG"/>
                         <outlet property="firstResultButton" destination="GDv-vF-a0E" id="ExU-Hs-yPP"/>
                         <outlet property="nowPlayingArtistLabel" destination="1w3-bb-fyy" id="EGP-rs-obi"/>
                         <outlet property="nowPlayingDownVoteCount" destination="OFf-Ma-dcU" id="AjU-0d-xw9"/>

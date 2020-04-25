@@ -22,9 +22,9 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     // hard coded songs
-    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
+//    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
     
-    lazy var sortedSongs = songs.sorted(by: {$0.aggVote > $1.aggVote})
+    lazy var sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
     
     
     @IBOutlet var searchTermField: UITextField!
@@ -34,6 +34,7 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet weak var nowPlayingDownVoteCount: UILabel!
     @IBOutlet weak var nowPlayingUpVoteCount: UILabel!
     
+    @IBOutlet weak var djRequestedSongsTableView: UITableView!
     
     
     
@@ -151,7 +152,7 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return sortedSongs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -197,7 +198,10 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 self.songReq = Song(title: self.songReqTitle, artist: self.songReqArtist, upVoteCount: 0, downVoteCount: 0)
                 self.addToReqs(self.songReq)
             }
+            self.sortedSongs = self.requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
+            self.djRequestedSongsTableView.reloadData()
         }
+            
     }
 }
 
