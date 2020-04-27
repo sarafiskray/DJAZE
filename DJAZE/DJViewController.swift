@@ -84,6 +84,7 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     struct songInfo : Hashable {
         var uri: String
+        var id: String
         var name: String
         var artist: String
     }
@@ -91,31 +92,32 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBAction func selectFirstResult(_ sender: Any)
     {
-        sendToDb(searchInfo[0].name, searchInfo[0].artist)
+        sendToDb(searchInfo[0].id, searchInfo[0].name, searchInfo[0].artist)
         updateCurrentSongLabel(searchInfo[0].name, searchInfo[0].artist)
     }
     @IBAction func selectSecondResult(_ sender: Any)
     {
-        sendToDb(searchInfo[1].name, searchInfo[1].artist)
+        sendToDb(searchInfo[1].id, searchInfo[1].name, searchInfo[1].artist)
         updateCurrentSongLabel(searchInfo[1].name, searchInfo[1].artist)
 
     }
     
     @IBAction func selectThirdResult(_ sender: Any)
     {
-        sendToDb(searchInfo[2].name, searchInfo[2].artist)
+        sendToDb(searchInfo[2].id, searchInfo[2].name, searchInfo[2].artist)
         updateCurrentSongLabel(searchInfo[2].name, searchInfo[2].artist)
 
     }
     
-    func sendToDb(_ name: String, _ artist: String)
+    func sendToDb(_ trackID: String, _ name: String, _ artist: String)
     {
         //ref = Database.database().reference()
         var songNum=song+String(songCounter) //song0 song1 song2 song3
         songCounter+=1
         var autoid=String(songCounter)
         
-        db.collection("SongsPlayed").document(autoid).setData( ["Artist" : artist,
+        db.collection("SongsPlayed").document(autoid).setData( ["Track ID": trackID,
+                                                                "Artist" : artist,
                                                                 "SongName" : name,
                                                                 "Counter" : songCounter], merge:true)
         //self.ref.child("Songs/\(songNum)/Artist").setValue(artist)
@@ -138,7 +140,7 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         spotifyManager.find(SpotifyTrack.self, searchTerm) {
             tracks in
                 for track in tracks {
-                    var searchResult = songInfo(uri: track.uri, name: track.name, artist: track.artist.name)
+                    var searchResult = songInfo(uri: track.uri, id: track.id, name: track.name, artist: track.artist.name)
                     self.searchInfo.append(searchResult)
                     count += 1
                     if (count == numSongstoReturn) {

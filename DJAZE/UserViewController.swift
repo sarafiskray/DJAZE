@@ -29,8 +29,11 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     let db=Firestore.firestore()
     var autoid=""
     
+    var currentSongID = ""
     var currentSongTitle = ""
     var currentSongArtist = ""
+    
+    var songSaveCheck = false
     
     
 //    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
@@ -145,6 +148,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
                         //print("\(document.data()["SongName"]!)")
                         self.currentSongTitle = document.data()["Artist"]! as! String
                         self.currentSongArtist = document.data()["SongName"]! as! String
+                        self.currentSongID = document.data()["Track ID"]! as! String
                         self.updateCurrentSongLabel(self.currentSongTitle, self.currentSongArtist)
                         //self.currentSong = Song(title: currentTitle, artist: currentArtist, upVoteCount: 0, downVoteCount: 0)
                     }
@@ -220,7 +224,13 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         currentSong.voteUp()
     }
     @IBAction func addButton(_ sender: Any) {
-//        spotifyManager.isSaved(track: SpotifyTrack.self, completionHandler: spotifyManager.save(track: SpotifyTrack.self, completionHandler: print("error")))
+        spotifyManager.isSaved(trackId: currentSongID) { _ in
+            self.songSaveCheck = true
+        }
+        if self.songSaveCheck == false {
+            spotifyManager.save(trackId: currentSongID) { _ in
+            }
+        }
     }
     
     func sendToDb(_ name: String, _ artist: String)
