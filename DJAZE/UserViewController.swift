@@ -39,7 +39,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
 //    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
     
-    //lazy var sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
+    lazy var sortedSongs = requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
     
     var currentSong = Song(title: "Bop", artist: "DaBaby", upVoteCount: 0, downVoteCount: 0)
     
@@ -138,6 +138,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         self.first=true
         getCurrentSong()
+        getRequestedSongs()
         populate()
         //nowPlayingSongLabel.text = currentSong.title
         //nowPlayingArtistLabel.text = currentSong.artist
@@ -332,8 +333,9 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
                 self.songReqArtist = document.data()["Artist"] as! String
                 self.songReq = Song(title: self.songReqTitle, artist: self.songReqArtist, upVoteCount: 0, downVoteCount: 0)
                 self.addToReqs(self.songReq)
-                
             }
+            self.sortedSongs = self.requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
+            self.requestedSongsTableView.reloadData()
         }
     
     }
