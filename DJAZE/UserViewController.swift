@@ -34,6 +34,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     var currentSongArtist = ""
     
     var songSaveCheck = false
+    var searched = false
     
     
 //    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
@@ -63,26 +64,38 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     
     @IBAction func selectFirstResult(_ sender: Any) {
-        sendToDb(searchInfo[0].name, searchInfo[0].artist)
-        songReq = Song(title: searchInfo[0].name, artist: searchInfo[0].artist, upVoteCount: 0, downVoteCount: 0)
-        addToReqs(songReq)
-        requestedSongsTableView.reloadData()
+        if (searched == true) {
+            sendToDb(searchInfo[0].name, searchInfo[0].artist)
+            songReq = Song(title: searchInfo[0].name, artist: searchInfo[0].artist, upVoteCount: 0, downVoteCount: 0)
+            addToReqs(songReq)
+            requestedSongsTableView.reloadData()
+        } else {
+            print("you need to do a search first")
+        }
     }
     
     
     @IBAction func selectSecondResult(_ sender: Any) {
-        sendToDb(searchInfo[1].name, searchInfo[1].artist)
-        songReq = Song(title: searchInfo[1].name, artist: searchInfo[1].artist, upVoteCount: 0, downVoteCount: 0)
-        addToReqs(songReq)
-        requestedSongsTableView.reloadData()
+        if (searched == true) {
+            sendToDb(searchInfo[1].name, searchInfo[1].artist)
+            songReq = Song(title: searchInfo[1].name, artist: searchInfo[1].artist, upVoteCount: 0, downVoteCount: 0)
+            addToReqs(songReq)
+            requestedSongsTableView.reloadData()
+        } else {
+            print("you need to do a search first")
+        }
     }
     
     
     @IBAction func selectThirdResult(_ sender: Any) {
-        sendToDb(searchInfo[2].name, searchInfo[2].artist)
-        songReq = Song(title: searchInfo[2].name, artist: searchInfo[2].artist, upVoteCount: 0, downVoteCount: 0)
-        addToReqs(songReq)
-        requestedSongsTableView.reloadData()
+        if (searched == true) {
+            sendToDb(searchInfo[2].name, searchInfo[2].artist)
+            songReq = Song(title: searchInfo[2].name, artist: searchInfo[2].artist, upVoteCount: 0, downVoteCount: 0)
+            addToReqs(songReq)
+            requestedSongsTableView.reloadData()
+        } else {
+            print("you need to do a search first")
+        }
     }
     
     
@@ -154,7 +167,6 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
                     }
                 }
         }
-        print(requestedSongs)
     }
     
     
@@ -214,7 +226,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func searchButton(_ sender: Any) {
         let searchTerm = searchTermTextField.text!
-        
+        searched = true
         search(searchTerm)
     }
     @IBAction func nowPlayingDislikeButton(_ sender: Any) {

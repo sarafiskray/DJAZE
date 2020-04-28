@@ -20,6 +20,8 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var songCounter=0
     var song="song"
     
+    //bool to make sure buttons are pressed after search
+    var searched = false;
     
     // hard coded songs
 //    var songs = [Song(title: "Peta", artist: "Roddy Ricch", upVoteCount: 0, downVoteCount: 0), Song(title: "Gorgeous", artist: "Kanye West", upVoteCount: 0, downVoteCount: 0), Song(title: "Many Men", artist: "50Cent", upVoteCount: 0, downVoteCount: 0)]
@@ -45,7 +47,7 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         getRequestedSongs()
-        print(requestedSongs)
+        //print(requestedSongs)
         
     }
     
@@ -59,7 +61,7 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBAction func searchButton(_ sender: Any) {
         
         var searchTerm = searchTermField.text!
-        
+        searched = true;
         search(searchTerm)
     }
     
@@ -91,21 +93,33 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     @IBAction func selectFirstResult(_ sender: Any)
-    {
-        sendToDb(searchInfo[0].id, searchInfo[0].name, searchInfo[0].artist)
-        updateCurrentSongLabel(searchInfo[0].name, searchInfo[0].artist)
+    {   if (searched == true) {
+            sendToDb(searchInfo[0].id, searchInfo[0].name, searchInfo[0].artist)
+            updateCurrentSongLabel(searchInfo[0].name, searchInfo[0].artist)
+        }
+    else {
+        print("you havent done a search")
+        }
     }
     @IBAction func selectSecondResult(_ sender: Any)
-    {
+    {   if (searched == true) {
         sendToDb(searchInfo[1].id, searchInfo[1].name, searchInfo[1].artist)
         updateCurrentSongLabel(searchInfo[1].name, searchInfo[1].artist)
+        }
+        else {
+            print("you havent done a search")
+            }
 
     }
     
     @IBAction func selectThirdResult(_ sender: Any)
-    {
+    {   if (searched == true) {
         sendToDb(searchInfo[2].id, searchInfo[2].name, searchInfo[2].artist)
         updateCurrentSongLabel(searchInfo[2].name, searchInfo[2].artist)
+        }
+        else {
+            print("you havent done a search")
+            }
 
     }
     
