@@ -185,18 +185,19 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         let reqRef = db.collection("songsRequested").document(documentNum)
         reqRef.updateData(["upvotes" : FieldValue.increment(Int64(1))
             ])
-        //let reqRef = db.collection("songsRequested")
-        //var query = reqRef.whereField("SongName", isEqualTo: requestedSongs[index].title)
         self.requestedSongsTableView.reloadData()
-        print(requestedSongs[index].title)
-        print(index)
+        
     }
     
     func voteDown(index: Int) {
         requestedSongs[index].voteDown()
         //sortSongs()
+        //send to db
+        let documentNum : String = String(index + 1)
+        let reqRef = db.collection("songsRequested").document(documentNum)
+        reqRef.updateData(["downvotes" : FieldValue.increment(Int64(1))
+            ])
         requestedSongsTableView.reloadData()
-        //print(requestedSongs[index].title)
         
     }
     
