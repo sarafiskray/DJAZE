@@ -180,13 +180,24 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     func voteUp(index: Int) {
         requestedSongs[index].voteUp()
         //sortSongs()
+        //send to db
+        let documentNum : String = String(index + 1)
+        let reqRef = db.collection("songsRequested").document(documentNum)
+        reqRef.updateData(["upvotes" : FieldValue.increment(Int64(1))
+            ])
+        //let reqRef = db.collection("songsRequested")
+        //var query = reqRef.whereField("SongName", isEqualTo: requestedSongs[index].title)
         self.requestedSongsTableView.reloadData()
+        print(requestedSongs[index].title)
+        print(index)
     }
     
     func voteDown(index: Int) {
         requestedSongs[index].voteDown()
         //sortSongs()
         requestedSongsTableView.reloadData()
+        //print(requestedSongs[index].title)
+        
     }
     
     func getUpVoteCount(index: Int) -> Int {
@@ -252,7 +263,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         songCounter+=1
         autoid=String(songCounter)
         
-        db.collection("songsRequested").document(autoid).setData( ["SongNum":autoid,"Artist" : artist,"SongName":name], merge:true)
+        db.collection("songsRequested").document(autoid).setData( ["SongNum":autoid, "Artist":artist, "SongName":name, "upvotes":0, "downvotes":0], merge:true)
         
     }
     

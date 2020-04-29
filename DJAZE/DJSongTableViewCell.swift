@@ -20,6 +20,8 @@ class DJSongTableViewCell: UITableViewCell {
     @IBOutlet weak var downVoteCountLabel: UILabel!
     @IBOutlet weak var upVoteCountLabel: UILabel!
     
+    
+    
     var delegate: DJSongCellDelegate?
     
     override func awakeFromNib() {
