@@ -33,8 +33,8 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBOutlet weak var nowPlayingSongLabel: UILabel!
     @IBOutlet weak var nowPlayingArtistLabel: UILabel!
-    @IBOutlet weak var nowPlayingDownVoteCount: UILabel!
-    @IBOutlet weak var nowPlayingUpVoteCount: UILabel!
+    //@IBOutlet weak var nowPlayingDownVoteCount: UILabel!
+    //@IBOutlet weak var nowPlayingUpVoteCount: UILabel!
     
     @IBOutlet weak var djRequestedSongsTableView: UITableView!
     
@@ -211,7 +211,9 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 //print("\(document.documentID) => \(document.data())")
                 self.songReqTitle = document.data()["SongName"] as! String
                 self.songReqArtist = document.data()["Artist"] as! String
-                self.songReq = Song(title: self.songReqTitle, artist: self.songReqArtist, upVoteCount: 0, downVoteCount: 0)
+                var numUpvotes = document.data()["upvotes"] as! Int
+                var numDownvotes = document.data()["downvotes"] as! Int
+                self.songReq = Song(title: self.songReqTitle, artist: self.songReqArtist, upVoteCount: numUpvotes, downVoteCount: numDownvotes)
                 self.addToReqs(self.songReq)
             }
             self.sortedSongs = self.requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})

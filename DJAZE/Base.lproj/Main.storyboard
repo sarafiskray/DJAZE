@@ -197,20 +197,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFf-Ma-dcU">
-                                <rect key="frame" x="20" y="438" width="11" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmW-re-r82">
-                                <rect key="frame" x="352" y="438" width="11" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -220,9 +206,7 @@
                         <outlet property="djRequestedSongsTableView" destination="CqJ-2B-Edo" id="6OC-NB-tzG"/>
                         <outlet property="firstResultButton" destination="GDv-vF-a0E" id="ExU-Hs-yPP"/>
                         <outlet property="nowPlayingArtistLabel" destination="1w3-bb-fyy" id="EGP-rs-obi"/>
-                        <outlet property="nowPlayingDownVoteCount" destination="OFf-Ma-dcU" id="AjU-0d-xw9"/>
                         <outlet property="nowPlayingSongLabel" destination="Tod-1s-bi9" id="kLj-s0-uAV"/>
-                        <outlet property="nowPlayingUpVoteCount" destination="HmW-re-r82" id="9VV-PB-Nh0"/>
                         <outlet property="searchTermField" destination="T2p-zX-KeO" id="2J9-tL-gMt"/>
                         <outlet property="secondResultButton" destination="eJk-ao-sK7" id="Fnp-CB-jqM"/>
                         <outlet property="thirdResultButton" destination="qrT-4a-Ifp" id="GXP-PL-D8C"/>
@@ -336,11 +320,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVQ-ff-tL0" userLabel="Dislike Button">
-                                <rect key="frame" x="20" y="392" width="45" height="30"/>
-                                <state key="normal" title="Dislike"/>
-                                <connections>
-                                    <action selector="nowPlayingDislikeButton:" destination="zBW-Rk-oFZ" eventType="touchUpInside" id="0mn-gg-Tri"/>
-                                </connections>
+                                <rect key="frame" x="20" y="392" width="30" height="30"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcR-HY-iI4" userLabel="Add Button">
                                 <rect key="frame" x="192" y="392" width="30" height="30"/>
@@ -351,10 +331,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQZ-LB-KeX" userLabel="Like Button">
                                 <rect key="frame" x="364" y="392" width="30" height="30"/>
-                                <state key="normal" title="Like"/>
-                                <connections>
-                                    <action selector="nowPlayingLikeButton:" destination="zBW-Rk-oFZ" eventType="touchUpInside" id="NGz-PK-dAT"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J1u-dh-1Te" userLabel="Search Term Text Field">
                                 <rect key="frame" x="20" y="103" width="323" height="34"/>
@@ -424,6 +400,7 @@
                             <constraint firstItem="R0p-L6-Bfj" firstAttribute="centerX" secondItem="nyW-kq-IO9" secondAttribute="centerX" id="1n6-Wy-tiv"/>
                             <constraint firstItem="hpL-Wa-mUl" firstAttribute="trailing" secondItem="nfP-aw-OdT" secondAttribute="trailing" constant="20" id="3A6-Nb-3Xd"/>
                             <constraint firstItem="hpL-Wa-mUl" firstAttribute="trailing" secondItem="mHb-Vw-vVa" secondAttribute="trailing" id="3Mt-iN-chO"/>
+                            <constraint firstItem="TcR-HY-iI4" firstAttribute="top" secondItem="hQZ-LB-KeX" secondAttribute="top" id="3TZ-Rc-uJN"/>
                             <constraint firstItem="mHb-Vw-vVa" firstAttribute="top" secondItem="R0p-L6-Bfj" secondAttribute="bottom" constant="2" id="78O-4D-tVg"/>
                             <constraint firstItem="gVQ-ff-tL0" firstAttribute="leading" secondItem="J1u-dh-1Te" secondAttribute="leading" id="7WL-CR-WhA"/>
                             <constraint firstItem="R0p-L6-Bfj" firstAttribute="trailing" secondItem="Jf5-zS-DlM" secondAttribute="trailing" id="9Mc-EP-hKo"/>
@@ -439,6 +416,7 @@
                             <constraint firstItem="nyW-kq-IO9" firstAttribute="top" secondItem="UMo-Ck-gFx" secondAttribute="bottom" constant="8" id="RMb-u7-1ar"/>
                             <constraint firstItem="hpL-Wa-mUl" firstAttribute="trailing" secondItem="mHb-Vw-vVa" secondAttribute="trailing" id="SFT-rb-kwB"/>
                             <constraint firstItem="Bj0-FQ-4YG" firstAttribute="leading" secondItem="Oga-qU-L5b" secondAttribute="leading" id="T01-cp-NEB"/>
+                            <constraint firstItem="TcR-HY-iI4" firstAttribute="top" secondItem="gVQ-ff-tL0" secondAttribute="top" id="VsO-ei-Eak"/>
                             <constraint firstItem="UMo-Ck-gFx" firstAttribute="top" secondItem="Bj0-FQ-4YG" secondAttribute="bottom" constant="8" symbolic="YES" id="WEh-3f-3ad"/>
                             <constraint firstItem="hQZ-LB-KeX" firstAttribute="top" secondItem="TaR-IU-cpI" secondAttribute="bottom" constant="19" id="Xc7-v5-KhX"/>
                             <constraint firstItem="Bj0-FQ-4YG" firstAttribute="leading" secondItem="hpL-Wa-mUl" secondAttribute="leading" id="Zl9-lE-t44"/>

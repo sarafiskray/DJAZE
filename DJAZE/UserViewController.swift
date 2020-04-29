@@ -24,6 +24,7 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
     var requestedSongs: [Song] = []
     var songReqTitle = ""
     var songReqArtist = ""
+    
     var songReq : Song = Song(title: "", artist: "", upVoteCount: 0, downVoteCount: 0)
     
     let db=Firestore.firestore()
@@ -242,12 +243,15 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
         searched = true
         search(searchTerm)
     }
+    /*
     @IBAction func nowPlayingDislikeButton(_ sender: Any) {
         currentSong.voteDown()
     }
     @IBAction func nowPlayingLikeButton(_ sender: Any) {
         currentSong.voteUp()
     }
+     */
+    
     @IBAction func addButton(_ sender: Any) {
         spotifyManager.isSaved(trackId: currentSongID) { _ in
             self.songSaveCheck = true
@@ -343,7 +347,9 @@ class UserViewController : UIViewController, UITableViewDelegate, UITableViewDat
                 //print("\(document.documentID) => \(document.data())")
                 self.songReqTitle = document.data()["SongName"] as! String
                 self.songReqArtist = document.data()["Artist"] as! String
-                self.songReq = Song(title: self.songReqTitle, artist: self.songReqArtist, upVoteCount: 0, downVoteCount: 0)
+                var numUpvotes = document.data()["upvotes"] as! Int
+                var numDownvotes = document.data()["downvotes"] as! Int
+                self.songReq = Song(title: self.songReqTitle, artist: self.songReqArtist, upVoteCount: numUpvotes, downVoteCount: numDownvotes)
                 self.addToReqs(self.songReq)
             }
             self.sortedSongs = self.requestedSongs.sorted(by: {$0.aggVote > $1.aggVote})
