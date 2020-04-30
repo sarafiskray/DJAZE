@@ -36,6 +36,15 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     //@IBOutlet weak var nowPlayingDownVoteCount: UILabel!
     //@IBOutlet weak var nowPlayingUpVoteCount: UILabel!
     
+    
+    @IBOutlet var refreshButton: UIButton!
+    
+    
+    @IBAction func refreshRequests(_ sender: Any) {
+        requestedSongs = []
+        getRequestedSongs()
+    }
+    
     @IBOutlet weak var djRequestedSongsTableView: UITableView!
     
     
