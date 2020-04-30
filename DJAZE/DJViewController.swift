@@ -15,6 +15,10 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var songReqTitle = ""
     var songReqArtist = ""
     var songReq : Song = Song(title: "", artist: "", upVoteCount: 0, downVoteCount: 0)
+    
+    var currentSongTitle = ""
+    var currentSongArtist = ""
+    
     //firestore
     let db=Firestore.firestore()
     var songCounter=0
@@ -56,6 +60,7 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         getRequestedSongs()
+        getCurrentSong()
         //print(requestedSongs)
         
     }
@@ -63,6 +68,24 @@ class DJViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func updateCurrentSongLabel(_ title: String, _ artist: String) {
         nowPlayingSongLabel.text = title
         nowPlayingArtistLabel.text = artist
+    }
+    
+    func getCurrentSong() {
+        db.collection("SongsPlayed").order(by: "Counter", descending: true).limit(to: 1)
+            .getDocuments()  { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        //print("\(document.data()["Artist"]!)")
+                        //print("\(document.data()["SongName"]!)")
+                        self.currentSongTitle = document.data()["Artist"]! as! String
+                        self.currentSongArtist = document.data()["SongName"]! as! String
+                        self.updateCurrentSongLabel(self.currentSongTitle, self.currentSongArtist)
+                        //self.currentSong = Song(title: currentTitle, artist: currentArtist, upVoteCount: 0, downVoteCount: 0)
+                    }
+                }
+        }
     }
     
     //search button
