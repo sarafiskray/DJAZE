@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         // Authorize our app for the Spotify account if there is no token
         // This opens a browser window from which the user can authenticate into his account
         spotifyManager.authorize()
-        //loadUser()
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func DJSegueButton(_ sender: UIButton) {
